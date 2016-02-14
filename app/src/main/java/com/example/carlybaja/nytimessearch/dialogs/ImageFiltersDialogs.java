@@ -1,6 +1,7 @@
 package com.example.carlybaja.nytimessearch.dialogs;
 
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -11,17 +12,21 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.carlybaja.nytimessearch.R;
 import com.example.carlybaja.nytimessearch.models.SearchOptions;
+import com.example.carlybaja.nytimessearch.utils.DatePickerFragment;
+
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ImageFiltersDialogs extends DialogFragment implements AdapterView.OnItemSelectedListener {
-
 
     private SearchOptions searchOptions;
 
@@ -51,6 +56,8 @@ public class ImageFiltersDialogs extends DialogFragment implements AdapterView.O
         tvImageTitle.setText(title);
 
         searchOptions = getArguments().getParcelable("searchOptions");
+
+
 
         // set up spinners and their default selected values
         Spinner spSortOrder = (Spinner)view.findViewById(R.id.spSortOrder);
@@ -93,13 +100,58 @@ public class ImageFiltersDialogs extends DialogFragment implements AdapterView.O
 
         return view;
     }
-
     @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //setContentView(R.layout.activity_second);
+
+        EditText etBeginDate =(EditText) view.findViewById(R.id.etBeginDate);
+        etBeginDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePicker();
+            }
+        });
+    }
+
+    private void showDatePicker() {
+        DatePickerFragment date = new DatePickerFragment();
+        /**
+         * Set Up Current Date Into dialog
+         */
+        Calendar calender = Calendar.getInstance();
+        Bundle args = new Bundle();
+        args.putInt("year", calender.get(Calendar.YEAR));
+        args.putInt("month", calender.get(Calendar.MONTH));
+        args.putInt("day", calender.get(Calendar.DAY_OF_MONTH));
+        date.setArguments(args);
+        /**
+         * Set Call back to capture selected date
+         */
+        date.setCallBack(ondate);
+        date.show(getFragmentManager(), "Date Picker");
+
+    }
+
+    DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
+
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            EditText etBeginDate =(EditText) view.findViewById(R.id.etBeginDate);
+
+
+            etBeginDate.setText(String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear + 1)
+                    + "-" + String.valueOf(year));
+
+        }
+    };
+
+   @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String selectedValue = (String)parent.getItemAtPosition(position);
         switch (parent.getId()) {
             case R.id.tvBeginDate:
-              //  searchOptions.beginDate = selectedValue;
+                searchOptions.beginDate = selectedValue;
                 break;
             case R.id.spSortOrder:
                 searchOptions.sortOrder = selectedValue;
