@@ -7,92 +7,102 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="25dp"
+        android:text="Advanced Filters"
+        android:gravity="center_horizontal"
+        android:textColor="#ffffff"
+        android:id="@+id/tvImageFilterDialogTitle"/>
+
 
     <TextView android:text="@string/begindate"
         android:id="@+id/tvBeginDate"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-
-        android:layout_marginTop="45dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="15dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvImageFilterDialogTitle"
+        android:layout_alignTop="@+id/etBeginDate"
+        android:paddingLeft="10dp"
+         />
 
     <EditText
         android:id="@+id/etBeginDate"
-        android:layout_width="250dp"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/tvBeginDate"
+        android:layout_below="@id/tvImageFilterDialogTitle"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="20dp"
-        android:layout_toRightOf="@+id/tvDeskValues"
-        android:layout_toEndOf="@+id/tvDeskValues" />
+        android:paddingRight="10dp"
+         />
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/tvBeginDate"
+        android:layout_alignLeft="@+id/tvBeginDate"
         android:text="@string/order"
         android:id="@+id/tvSortOrder"
         android:layout_below="@+id/tvBeginDate"
-        android:layout_alignLeft="@+id/tvBeginDate"
-        android:layout_alignStart="@+id/tvBeginDate"
-        android:layout_marginTop="48dp" />
+        android:layout_alignBottom="@+id/spSortOrder"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"/>
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spSortOrder"
-        android:layout_alignTop="@+id/tvSortOrder"
-        android:layout_alignLeft="@+id/etBeginDate"
-        android:layout_alignStart="@+id/etBeginDate"
-        android:layout_alignRight="@+id/etBeginDate"
-        android:layout_alignEnd="@+id/etBeginDate"
-        android:spinnerMode="dropdown" />
+        android:layout_toRightOf="@id/tvSortOrder"
+        android:layout_alignLeft="@id/etBeginDate"
+        android:layout_below="@id/etBeginDate"
+
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvSortOrder"
+        android:layout_alignRight="@+id/tvSortOrder"
         android:text="@string/desk"
         android:id="@+id/tvDeskValues"
-        android:layout_below="@+id/spSortOrder"
-        android:layout_alignLeft="@+id/tvSortOrder"
-        android:layout_alignStart="@+id/tvSortOrder"
-        android:layout_marginTop="30dp" />
+        android:layout_below="@+id/tvSortOrder"
+        android:layout_alignBottom="@+id/spDeskValues"
+        android:paddingLeft="10dp"
+        />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spDeskValues"
+        android:layout_toRightOf="@id/tvDeskValues"
+        android:layout_alignLeft="@+id/spSortOrder"
+        android:layout_below="@id/spSortOrder"
+
+         />
 
     <LinearLayout
+
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/spSortOrder"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="124dp">
+        android:layout_marginTop="80dp">
         <Button
             android:id="@+id/btnSave"
             android:text="@string/save"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content" />
         <Button
             android:id="@+id/btnCancel"
             android:text="@string/cancel"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spDeskValues"
-        android:layout_below="@+id/spSortOrder"
-        android:layout_alignRight="@+id/spSortOrder"
-        android:layout_alignEnd="@+id/spSortOrder"
-        android:layout_toRightOf="@+id/tvDeskValues"
-        android:layout_toEndOf="@+id/tvDeskValues"
-        android:layout_marginTop="20dp"
-        android:spinnerMode="dropdown" />
 
 </RelativeLayout>
 

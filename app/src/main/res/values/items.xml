@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sort_order">
+        <item>any</item>
+        <item>oldest</item>
+        <item>newest</item>
+    </string-array>
+    <string-array name="desk_values">
+        <item>any</item>
+        <item>Arts</item>
+        <item>Fashion</item>
+        <item>Sports</item>
+    </string-array>
+
+</resources>

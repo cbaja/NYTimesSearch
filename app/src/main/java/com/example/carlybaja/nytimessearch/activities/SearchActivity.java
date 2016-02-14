@@ -90,12 +90,6 @@ public class SearchActivity extends AppCompatActivity  implements ImageFiltersDi
 
     }
 
-    // Append more data into the adapter
-    public void customLoadMoreDataFromApi(int offset) {
-        // This method probably sends out a network request and appends new data items to your adapter.
-        // Use the offset value and add it as a parameter to your API request to retrieve paginated data.
-        // Deserialize API response and then construct new objects to append to the adapter
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -148,8 +142,8 @@ public class SearchActivity extends AppCompatActivity  implements ImageFiltersDi
                     }
 
                     // JSONObject cursorJSON = response.getJSONObject("responseData").getJSONObject("cursor");
-
-                    JSONObject cursorJSON = response.getJSONObject("response").getJSONObject("docs");
+/*
+                    final JSONObject cursorJSON = response.getJSONObject("response").getJSONObject("docs");
                     int currentPage = cursorJSON.getInt("currentPageIndex");
 
                     JSONArray pages = cursorJSON.getJSONArray("pages");
@@ -160,7 +154,7 @@ public class SearchActivity extends AppCompatActivity  implements ImageFiltersDi
                         // stop searching once we have reached the end
                         Toast.makeText(getApplicationContext(), "No more results for this search!", Toast.LENGTH_SHORT).show();
                         return;
-                    }
+                    }*/
 
                     //      articleJsonResults = response.getJSONObject("response").getJSONArray("docs");
                     //      adapter.addAll(Article.fromJSONArray(articleJsonResults));
@@ -172,15 +166,13 @@ public class SearchActivity extends AppCompatActivity  implements ImageFiltersDi
                         article.webUrl = articleJSON.getString("web_url");
                         article.headline = articleJSON.getJSONObject("headline").getString("main");
 
-                        JSONArray multimedia = response.getJSONObject("response").getJSONArray("multimedia");
+                        JSONArray multimedia = articleJSON.getJSONArray("multimedia");
                         if (multimedia.length() > 0) {
                             JSONObject multimediaJson = multimedia.getJSONObject(0);
                             article.thumbNail = "http://www.nytimes.com/" + multimediaJson.getString("url");
                         } else {
                             article.thumbNail = "";
                         }
-
-                        //article.thumbNail = articleJSON.getString("url");
                         adapter.add(article);
                     }
                     adapter.notifyDataSetChanged();
@@ -198,7 +190,8 @@ public class SearchActivity extends AppCompatActivity  implements ImageFiltersDi
                                   Header[] headers,
                                   Throwable throwable,
                                   JSONObject errorResponse) {
-               // super.onFailure(statusCode, headers, throwable, errorResponse);
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+
             }
         });
     }

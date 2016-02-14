@@ -21,8 +21,8 @@ import java.util.List;
 public class ArticleArrayAdapter extends ArrayAdapter<Article> {
 
     public static class ViewHolder{
-        ImageView ivImage;
-        TextView  tvTitle;
+        ImageView image;
+        TextView  headline;
     }
 
     public ArticleArrayAdapter(Context context, List<Article> articles){
@@ -34,18 +34,22 @@ public class ArticleArrayAdapter extends ArrayAdapter<Article> {
         ViewHolder viewHolder;
         // get the data items
         Article article = this.getItem(position);
+
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_article_result, parent, false);
             viewHolder = new ViewHolder();
-            viewHolder.ivImage = (ImageView)convertView.findViewById(R.id.ivImage);
-            viewHolder.tvTitle = (TextView)convertView.findViewById(R.id.tvTitle);
+            viewHolder.image = (ImageView)convertView.findViewById(R.id.ivImage);
+            viewHolder.headline = (TextView)convertView.findViewById(R.id.tvTitle);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder)convertView.getTag();
         }
+        // set Title
+        viewHolder.headline.setText(article.headline);
+
         // set image using Picasso
         if (!TextUtils.isEmpty(article.thumbNail)){
-            Picasso.with(getContext()).load(article.thumbNail).placeholder(R.mipmap.placeholder_image).into(viewHolder.ivImage);
+            Picasso.with(getContext()).load(article.thumbNail).placeholder(R.mipmap.placeholder_image).into(viewHolder.image);
         }
         return  convertView;
     }

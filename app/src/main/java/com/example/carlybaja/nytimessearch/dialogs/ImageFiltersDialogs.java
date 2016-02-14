@@ -46,38 +46,28 @@ public class ImageFiltersDialogs extends DialogFragment implements AdapterView.O
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_image_filters, container, false);
 
-  //      String title = getArguments().getString("title", "Advanced Filters");
-   //     TextView tvImageTitle = (TextView)view.findViewById(R.id.tvImageFilterDialogTitle);
-     //   tvImageTitle.setText(title);
+        String title = getArguments().getString("title", "Advanced Filters");
+        TextView tvImageTitle = (TextView)view.findViewById(R.id.tvImageFilterDialogTitle);
+        tvImageTitle.setText(title);
 
         searchOptions = getArguments().getParcelable("searchOptions");
 
         // set up spinners and their default selected values
-   /*     Spinner spImageSize = (Spinner)view.findViewById(R.id.spImageSize);
-        ArrayAdapter<CharSequence> imageSizesAdapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.image_size, android.R.layout.simple_spinner_item);
-        imageSizesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spImageSize.setAdapter(imageSizesAdapter);
-        spImageSize.setSelection(imageSizesAdapter.getPosition(searchOptions.imageSize));
-        spImageSize.setOnItemSelectedListener(this);
+        Spinner spSortOrder = (Spinner)view.findViewById(R.id.spSortOrder);
+        ArrayAdapter<CharSequence> sortOrderAdapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.sort_order, android.R.layout.simple_spinner_item);
+        sortOrderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spSortOrder.setAdapter(sortOrderAdapter);
+        spSortOrder.setSelection(sortOrderAdapter.getPosition(searchOptions.sortOrder));
+        spSortOrder.setOnItemSelectedListener(this);
 
-        Spinner spColorFilter = (Spinner)view.findViewById(R.id.spColorFilter);
-        ArrayAdapter<CharSequence> imageColorsAdapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.image_color, android.R.layout.simple_spinner_item);
-        imageColorsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spColorFilter.setAdapter(imageColorsAdapter);
-        spColorFilter.setSelection(imageColorsAdapter.getPosition(searchOptions.colorFilter));
-        spColorFilter.setOnItemSelectedListener(this);
-
-        Spinner spImageType = (Spinner)view.findViewById(R.id.spImageType);
-        ArrayAdapter<CharSequence> imageTypes = ArrayAdapter.createFromResource(getActivity(),
-                R.array.image_type, android.R.layout.simple_spinner_item);
-        imageTypes.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spImageType.setAdapter(imageTypes);
-        spImageType.setSelection(imageTypes.getPosition(searchOptions.imageType));
-        spImageType.setOnItemSelectedListener(this);
-
-        */
+        Spinner spDeskValues = (Spinner)view.findViewById(R.id.spDeskValues);
+        ArrayAdapter<CharSequence> DeskValuesAdapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.desk_values, android.R.layout.simple_spinner_item);
+        DeskValuesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spDeskValues.setAdapter(DeskValuesAdapter);
+        spDeskValues.setSelection(DeskValuesAdapter.getPosition(searchOptions.deskValues));
+        spDeskValues.setOnItemSelectedListener(this);
 
         getDialog().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
@@ -109,7 +99,7 @@ public class ImageFiltersDialogs extends DialogFragment implements AdapterView.O
         String selectedValue = (String)parent.getItemAtPosition(position);
         switch (parent.getId()) {
             case R.id.tvBeginDate:
-                searchOptions.beginDate = selectedValue;
+              //  searchOptions.beginDate = selectedValue;
                 break;
             case R.id.spSortOrder:
                 searchOptions.sortOrder = selectedValue;

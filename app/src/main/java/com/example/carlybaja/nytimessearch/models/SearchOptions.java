@@ -14,7 +14,7 @@ public class SearchOptions implements Parcelable {
       Sort order (oldest or newest)
   */
 
-    public String beginDate;
+    //public String beginDate;
     public String sortOrder;
     public String deskValues;
     public String searchTerm;
@@ -28,7 +28,7 @@ public class SearchOptions implements Parcelable {
     @Override
     public void writeToParcel(Parcel out, int flags) {
 
-        out.writeString(beginDate);
+      //  out.writeString(beginDate);
         out.writeString(sortOrder);
         out.writeString(deskValues);
         out.writeString(searchTerm);
@@ -50,7 +50,7 @@ public class SearchOptions implements Parcelable {
     };
 
     private SearchOptions(Parcel in) {
-        beginDate = in.readString();
+       // beginDate = in.readString();
         sortOrder = in.readString();
         deskValues = in.readString();
         searchTerm = in.readString();
@@ -61,9 +61,9 @@ public class SearchOptions implements Parcelable {
         searchTerm = query;
 
         // default values
-        beginDate = "any";
-        sortOrder = "any";
-        deskValues = "any";
+       // beginDate = "";
+          sortOrder = "";
+          deskValues = "";
     }
 
 }

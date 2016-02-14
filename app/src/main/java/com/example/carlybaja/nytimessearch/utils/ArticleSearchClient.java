@@ -12,9 +12,9 @@ public class ArticleSearchClient {
 
     private static final String BASE_URL = "http://api.nytimes.com/svc/search/v2/articlesearch.json";
     private static final String SEARCH_PARAM = "q";
-    private static final String BEGIN_DATE = "begin_date";
+ /*   private static final String BEGIN_DATE = "begin_date";
     private static final String SORT_ORDER= "sot_order";
-    private static final String DESK_VALUES = "desk_values";
+    private static final String DESK_VALUES = "desk_values";*/
     private static final String START_PARAM = "start";
     private static AsyncHttpClient client = new AsyncHttpClient();
 
@@ -23,7 +23,7 @@ public class ArticleSearchClient {
 
         // default required params
         params.put("api-key","25e1b95b05d51685062956f3fb15ffd7:3:74386186");
-      //  params.put("page",0);
+        params.put("start",0);
 
 
         client.get(BASE_URL, params, responseHandler);
@@ -31,7 +31,7 @@ public class ArticleSearchClient {
 
     private static RequestParams constructParamsFromSearchOptions(SearchOptions searchOptions) {
         RequestParams params = new RequestParams();
-        if (searchOptions.beginDate != null) {
+     /*   if (searchOptions.beginDate != null) {
             params.put(BEGIN_DATE, searchOptions.beginDate);
         }
         if (searchOptions.sortOrder != null) {
@@ -39,7 +39,7 @@ public class ArticleSearchClient {
         }
         if (searchOptions.deskValues != null) {
             params.put(DESK_VALUES, searchOptions.deskValues);
-        }
+        }*/
         if (searchOptions.searchTerm != null) {
             params.put(SEARCH_PARAM, searchOptions.searchTerm);
         }
