@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">NY Times Search</string>
+    <string name="action_settings">Settings</string>
+    <string name="hint">Enter search query</string>
+    <string name="search">Search</string>
+    <string name="title_activity_article">Article Details</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="save">Apply</string>
+    <string name="cancel">Cancel</string>
+    <string name="order">Sort Order</string>
+    <string name="desk">New Desk Value</string>
+    <string name="begindate">Begin Date</string>
+    <string name="startdate">Start Date</string>
+
+    <style name="Theme.ImageFilters" parent="@android:style/Theme.Translucent">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+</resources>
