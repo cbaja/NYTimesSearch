@@ -18,6 +18,7 @@ public class SearchOptions implements Parcelable {
     public String sortOrder;
     public String deskValues;
     public String searchTerm;
+    public String start;
 
     @Override
     public int describeContents() {
@@ -31,6 +32,7 @@ public class SearchOptions implements Parcelable {
         out.writeString(sortOrder);
         out.writeString(deskValues);
         out.writeString(searchTerm);
+        out.writeString(start);
 
     }
 
@@ -52,6 +54,7 @@ public class SearchOptions implements Parcelable {
         sortOrder = in.readString();
         deskValues = in.readString();
         searchTerm = in.readString();
+        start = in.readString();
     }
 
     public SearchOptions(String query) {

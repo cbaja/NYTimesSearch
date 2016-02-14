@@ -13,8 +13,6 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -37,7 +35,7 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
-public class SearchActivity extends AppCompatActivity  {
+public class SearchActivity extends AppCompatActivity  implements ImageFiltersDialogs.ImageFiltersDialogListener {
 
 
     GridView gvResults;
@@ -136,6 +134,8 @@ public class SearchActivity extends AppCompatActivity  {
         if (isFetching) {
             return;
         }
+
+
         ArticleSearchClient.searchArticles(searchOptions, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -143,7 +143,7 @@ public class SearchActivity extends AppCompatActivity  {
                 JSONArray articleJsonResults = null;
                 try {
                     if (isNewQuery) {
-                        searchOptions.searchTerm = "0";
+                        searchOptions.start = "0";
                         adapter.clear();
                     }
 
@@ -155,7 +155,7 @@ public class SearchActivity extends AppCompatActivity  {
                     JSONArray pages = cursorJSON.getJSONArray("pages");
                     if ((pages.length() - 1) > currentPage) {
                         JSONObject page = pages.getJSONObject(currentPage + 1);
-                        searchOptions.searchTerm = page.getString("0");
+                        searchOptions.start = page.getString("0");
                     } else if (!isNewQuery) {
                         // stop searching once we have reached the end
                         Toast.makeText(getApplicationContext(), "No more results for this search!", Toast.LENGTH_SHORT).show();
@@ -175,8 +175,8 @@ public class SearchActivity extends AppCompatActivity  {
                         JSONArray multimedia = response.getJSONObject("response").getJSONArray("multimedia");
                         if (multimedia.length() > 0) {
                             JSONObject multimediaJson = multimedia.getJSONObject(0);
-                            article.thumbNail = "http://www.nytimes.com/"+multimediaJson.getString("url");
-                        }else{
+                            article.thumbNail = "http://www.nytimes.com/" + multimediaJson.getString("url");
+                        } else {
                             article.thumbNail = "";
                         }
 
@@ -194,10 +194,11 @@ public class SearchActivity extends AppCompatActivity  {
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                super.onFailure(statusCode, headers, responseString, throwable);
-                Log.d("Failed: ", "" + statusCode);
-                Log.d("Error : ", "" + throwable);
+            public void onFailure(int statusCode,
+                                  Header[] headers,
+                                  Throwable throwable,
+                                  JSONObject errorResponse) {
+               // super.onFailure(statusCode, headers, throwable, errorResponse);
             }
         });
     }

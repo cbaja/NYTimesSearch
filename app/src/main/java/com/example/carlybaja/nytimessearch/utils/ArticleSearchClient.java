@@ -1,14 +1,9 @@
 package com.example.carlybaja.nytimessearch.utils;
 
-import com.example.carlybaja.nytimessearch.models.Article;
 import com.example.carlybaja.nytimessearch.models.SearchOptions;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * Created by carlybaja on 2/12/16.
@@ -20,6 +15,7 @@ public class ArticleSearchClient {
     private static final String BEGIN_DATE = "begin_date";
     private static final String SORT_ORDER= "sot_order";
     private static final String DESK_VALUES = "desk_values";
+    private static final String START_PARAM = "start";
     private static AsyncHttpClient client = new AsyncHttpClient();
 
     public static void searchArticles(SearchOptions searchOptions, JsonHttpResponseHandler responseHandler) {
@@ -27,7 +23,8 @@ public class ArticleSearchClient {
 
         // default required params
         params.put("api-key","25e1b95b05d51685062956f3fb15ffd7:3:74386186");
-        params.put("page",0);
+      //  params.put("page",0);
+
 
         client.get(BASE_URL, params, responseHandler);
     }
@@ -45,6 +42,10 @@ public class ArticleSearchClient {
         }
         if (searchOptions.searchTerm != null) {
             params.put(SEARCH_PARAM, searchOptions.searchTerm);
+        }
+
+        if (searchOptions.start != null) {
+            params.put(START_PARAM, searchOptions.start);
         }
 
         return  params;
