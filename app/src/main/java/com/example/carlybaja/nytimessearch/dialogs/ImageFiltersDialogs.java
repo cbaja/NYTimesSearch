@@ -133,12 +133,8 @@ public class ImageFiltersDialogs extends DialogFragment implements AdapterView.O
          * Set Call back to capture selected date
          */
         date.setCallBack(ondate);
-      //  date.setTargetFragment(ImageFiltersDialogs.this, 300);
         date.show(getFragmentManager(), "datePicker");
 
-       /* android.support.v4.app.DialogFragment newFragment = new DatePickerFragment();
-        newFragment.setTargetFragment(ImageFiltersDialogs.this, 300);
-        newFragment.show(getFragmentManager(), "datePicker");*/
 
     }
 
