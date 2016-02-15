@@ -110,12 +110,16 @@ public class ImageFiltersDialogs extends DialogFragment implements AdapterView.O
             @Override
             public void onClick(View v) {
                 showDatePicker();
+
+
+
             }
         });
     }
 
     private void showDatePicker() {
         DatePickerFragment date = new DatePickerFragment();
+      //  android.support.v4.app.DialogFragment date = new DatePickerFragment();
         /**
          * Set Up Current Date Into dialog
          */
@@ -129,7 +133,12 @@ public class ImageFiltersDialogs extends DialogFragment implements AdapterView.O
          * Set Call back to capture selected date
          */
         date.setCallBack(ondate);
-        date.show(getFragmentManager(), "Date Picker");
+      //  date.setTargetFragment(ImageFiltersDialogs.this, 300);
+        date.show(getFragmentManager(), "datePicker");
+
+       /* android.support.v4.app.DialogFragment newFragment = new DatePickerFragment();
+        newFragment.setTargetFragment(ImageFiltersDialogs.this, 300);
+        newFragment.show(getFragmentManager(), "datePicker");*/
 
     }
 
@@ -138,7 +147,6 @@ public class ImageFiltersDialogs extends DialogFragment implements AdapterView.O
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
             EditText etBeginDate =(EditText) view.findViewById(R.id.etBeginDate);
-
 
             etBeginDate.setText(String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear + 1)
                     + "-" + String.valueOf(year));

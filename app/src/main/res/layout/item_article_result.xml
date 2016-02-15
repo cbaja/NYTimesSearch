@@ -10,6 +10,7 @@
         android:src="@mipmap/placeholder_image"
         android:scaleType="center" />
 
+
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"

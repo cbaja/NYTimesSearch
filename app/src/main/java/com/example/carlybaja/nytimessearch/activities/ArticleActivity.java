@@ -28,12 +28,9 @@ public class ArticleActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-       // String url = getIntent().getStringExtra("url");
 
         Article article = (Article) getIntent().getParcelableExtra("article");
-
         WebView webView = (WebView)findViewById(R.id.wvArticle);
-
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -41,11 +38,7 @@ public class ArticleActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-      //  webView.loadUrl(url);
         webView.loadUrl(article.webUrl);
-
-
     }
 
 
@@ -66,6 +59,22 @@ public class ArticleActivity extends AppCompatActivity {
 
         miShare.setShareIntent(shareIntent);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        switch (id) {
+            case android.R.id.home:
+                // app icon in action bar clicked; goto parent activity.
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }

@@ -37,7 +37,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class SearchActivity extends AppCompatActivity  implements ImageFiltersDialogs.ImageFiltersDialogListener {
 
-
+    // variable declaration
     GridView gvResults;
     private SearchOptions searchOptions;
     private boolean isFetching;
@@ -52,9 +52,8 @@ public class SearchActivity extends AppCompatActivity  implements ImageFiltersDi
         setContentView(R.layout.activity_search);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setLogo(R.mipmap.ic_launcher);
         setupViews();
-
-
     }
 
     public void setupViews(){
@@ -79,15 +78,12 @@ public class SearchActivity extends AppCompatActivity  implements ImageFiltersDi
                 // get the article to display
                 Article article = articles.get(position);
                 // pass in that article into intent
-                // i.putExtra("url",article.getWebUrl());
                 i.putExtra("article", article);
                 // launch the activity
                 startActivity(i);
             }
         });
-
         searchOptions = new SearchOptions("");
-
     }
 
 
@@ -129,7 +125,6 @@ public class SearchActivity extends AppCompatActivity  implements ImageFiltersDi
             return;
         }
 
-
         ArticleSearchClient.searchArticles(searchOptions, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -140,24 +135,6 @@ public class SearchActivity extends AppCompatActivity  implements ImageFiltersDi
                         searchOptions.start = "0";
                         adapter.clear();
                     }
-
-                    // JSONObject cursorJSON = response.getJSONObject("responseData").getJSONObject("cursor");
-/*
-                    final JSONObject cursorJSON = response.getJSONObject("response").getJSONObject("docs");
-                    int currentPage = cursorJSON.getInt("currentPageIndex");
-
-                    JSONArray pages = cursorJSON.getJSONArray("pages");
-                    if ((pages.length() - 1) > currentPage) {
-                        JSONObject page = pages.getJSONObject(currentPage + 1);
-                        searchOptions.start = page.getString("0");
-                    } else if (!isNewQuery) {
-                        // stop searching once we have reached the end
-                        Toast.makeText(getApplicationContext(), "No more results for this search!", Toast.LENGTH_SHORT).show();
-                        return;
-                    }*/
-
-                    //      articleJsonResults = response.getJSONObject("response").getJSONArray("docs");
-                    //      adapter.addAll(Article.fromJSONArray(articleJsonResults));
 
                     JSONArray articlesJSON = response.getJSONObject("response").getJSONArray("docs");
                     for (int i = 0; i < articlesJSON.length(); i++) {
@@ -214,7 +191,6 @@ public class SearchActivity extends AppCompatActivity  implements ImageFiltersDi
                 searchOptions);
         imageFiltersDialog.show(fm, "fragment_image_filters");
     }
-
 
 
     public void onFinishImageFiltersDialog(SearchOptions searchOptions) {
